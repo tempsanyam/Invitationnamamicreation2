@@ -1,0 +1,422 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-midnight: #070d1c;
+    --color-royal-navy: #12213b;
+    --color-imperial-blue: #1b3254;
+    --color-emerald: #133c32;
+    --color-burgundy: #4d172f;
+    --color-antique-gold: #b18a48;
+    --color-rich-gold: #d2ad68;
+    --color-champagne: #e9d5a7;
+    --color-ivory: #f8f1e4;
+    --color-warm-ivory: #ede1cc;
+    --color-stone: #77746e;
+    --color-deep-shadow: #17151a;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #070d1c;
+    color: #f8f1e4;
+    overflow-x: clip;
+  }
+
+  body {
+    font-family: 'Hind', 'Noto Serif Devanagari', sans-serif;
+    background-color: #070d1c;
+    color: #f8f1e4;
+    overflow-x: clip;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Typography helpers */
+.font-hindi-serif {
+  font-family: 'Noto Serif Devanagari', Georgia, serif;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.royal-gold-title {
+  background: linear-gradient(
+    115deg,
+    #fff5dc 0%,
+    #e9d5a7 24%,
+    #fff9eb 44%,
+    #d2ad68 62%,
+    #f8ebd0 84%,
+    #fff5dc 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(210, 173, 104, 0.28));
+  animation: royalTitleShimmer 6.5s ease-in-out infinite;
+}
+
+.font-hindi-body {
+  font-family: 'Hind', sans-serif;
+  line-height: 1.72;
+}
+
+.font-english-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-english-label {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Safe viewport height */
+.min-h-svh-safe {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.h-svh-safe {
+  height: 100vh;
+  height: 100svh;
+}
+
+/* Ivory luxury paper surface */
+.royal-ivory-paper {
+  background-color: #f8f1e4;
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(233, 213, 167, 0.25), transparent 55%),
+    radial-gradient(circle at 80% 85%, rgba(210, 173, 104, 0.16), transparent 55%),
+    linear-gradient(180deg, #faf5eb 0%, #f5ecdc 50%, #ede1cc 100%);
+  box-shadow:
+    0 24px 54px -16px rgba(8, 12, 24, 0.72),
+    inset 0 0 36px rgba(177, 138, 72, 0.12);
+}
+
+/* Royal velvet navy surface */
+.royal-velvet-surface {
+  background-color: #142440;
+  background-image:
+    radial-gradient(circle at 50% 25%, rgba(29, 52, 85, 0.75), transparent 68%),
+    linear-gradient(165deg, #192d4f 0%, #111f38 52%, #0c172b 100%);
+}
+
+/* Satin ribbon texture */
+.satin-gold-ribbon-h {
+  background: linear-gradient(
+    180deg,
+    #b18a48 0%,
+    #e9d5a7 24%,
+    #d2ad68 50%,
+    #f5e7c4 74%,
+    #9f7837 100%
+  );
+  box-shadow:
+    0 4px 12px rgba(11, 20, 40, 0.55),
+    inset 0 1px 1px rgba(255, 250, 232, 0.65);
+}
+
+.satin-gold-ribbon-v {
+  background: linear-gradient(
+    90deg,
+    #9f7837 0%,
+    #e9d5a7 26%,
+    #d2ad68 52%,
+    #f5e7c4 76%,
+    #9f7837 100%
+  );
+  box-shadow:
+    4px 0 12px rgba(11, 20, 40, 0.5),
+    inset 1px 0 1px rgba(255, 250, 232, 0.6);
+}
+
+/* Hide scrollbars cleanly for swipe carousels */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* 3D Perspective utilities */
+.perspective-1400 {
+  perspective: 1400px;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Floating dust particles */
+@keyframes floatGoldDust {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.8);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.75;
+  }
+  75% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate3d(var(--dust-x, 14px), var(--dust-y, -48px), 0) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.gold-dust-particle {
+  animation: floatGoldDust var(--dust-dur, 7s) ease-in-out var(--dust-delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+/* Royal stone medallion dual counter-rotation */
+@keyframes stoneRotateCW {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes stoneRotateCCW {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes royalTitleShimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes goldLightSweep {
+  0% {
+    transform: translateX(-140%) skewX(-22deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.45;
+  }
+  65% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: translateX(220%) skewX(-22deg);
+    opacity: 0;
+  }
+}
+
+.animate-stone-cw {
+  animation: stoneRotateCW 28s linear infinite;
+  will-change: transform;
+}
+
+.animate-stone-ccw {
+  animation: stoneRotateCCW 20s linear infinite;
+  will-change: transform;
+}
+
+.animate-light-sweep {
+  animation: goldLightSweep 4.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Cinematic slow zoom for temple & Acharya photos */
+@keyframes gentlePhotoZoom {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.045);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-gentle-zoom {
+  animation: gentlePhotoZoom 16s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Scroll down arrow cue */
+@keyframes pullCueBounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.78;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+.animate-pull-cue {
+  animation: pullCueBounce 1.8s ease-in-out infinite;
+}
+
+/* Gentle Toran garland sway */
+@keyframes toranSway {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(1.5px) rotate(0.45deg);
+  }
+}
+
+.animate-toran-sway {
+  transform-origin: top center;
+  animation: toranSway 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Breathing royal golden halo aura */
+@keyframes haloBreathe {
+  0%, 100% {
+    transform: scale(0.96);
+    opacity: 0.48;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+.animate-halo-breathe {
+  animation: haloBreathe 4.4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Subtle 3D Gift Box levitation before opening */
+@keyframes boxLevitate {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-box-levitate {
+  animation: boxLevitate 3.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Subtle hanging silk tassel pendulum */
+@keyframes tasselSway {
+  0%, 100% {
+    transform: rotate(-2.2deg);
+  }
+  50% {
+    transform: rotate(2.2deg);
+  }
+}
+
+.animate-tassel-sway {
+  transform-origin: top center;
+  animation: tasselSway 3.6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Unrolling royal Farman downward parchment unfold */
+@keyframes farmanUnfurl {
+  0% {
+    opacity: 0;
+    transform: translateY(-16px) scaleY(0.84);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+.animate-farman-unfurl {
+  transform-origin: top center;
+  animation: farmanUnfurl 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Subtle corner filigree gleam */
+@keyframes filigreeGleam {
+  0%, 100% {
+    opacity: 0.72;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-filigree-gleam {
+  animation: filigreeGleam 4.5s ease-in-out infinite;
+}
+
+/* Travelling silk sheen across royal CTA buttons */
+.royal-btn-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.royal-btn-sheen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 45%;
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(255, 252, 236, 0.42) 50%,
+    transparent 100%
+  );
+  transform: translateX(-160%) skewX(-20deg);
+  animation: goldLightSweep 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .gold-dust-particle,
+  .royal-gold-title,
+  .animate-stone-cw,
+  .animate-stone-ccw,
+  .animate-light-sweep,
+  .animate-gentle-zoom,
+  .animate-pull-cue,
+  .animate-toran-sway,
+  .animate-halo-breathe,
+  .animate-box-levitate,
+  .animate-tassel-sway,
+  .animate-farman-unfurl,
+  .animate-filigree-gleam,
+  .royal-btn-sheen::after {
+    animation: none !important;
+  }
+}
+
