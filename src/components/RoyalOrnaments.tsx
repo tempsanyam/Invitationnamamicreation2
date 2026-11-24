@@ -187,7 +187,10 @@ export const GoldDustField: React.FC<{ className?: string }> = ({ className = ''
 /**
  * Architectural Indian Jali & Arch subtle background filigree.
  */
-export const RoyalJaliArchBackdrop: React.FC<{ className?: string }> = ({ className = '' }) => (
+export const RoyalJaliArchBackdrop: React.FC<{
+  className?: string;
+  showCenterCircles?: boolean;
+}> = ({ className = '', showCenterCircles = true }) => (
   <svg
     viewBox="0 0 400 640"
     fill="none"
@@ -206,8 +209,12 @@ export const RoyalJaliArchBackdrop: React.FC<{ className?: string }> = ({ classN
       strokeWidth="0.7"
       strokeDasharray="4 4"
     />
-    <circle cx="200" cy="146" r="54" stroke="#D2AD68" strokeWidth="0.8" />
-    <circle cx="200" cy="146" r="38" stroke="#D2AD68" strokeWidth="0.6" strokeDasharray="3 3" />
+    {showCenterCircles && (
+      <>
+        <circle cx="200" cy="146" r="54" stroke="#D2AD68" strokeWidth="0.8" />
+        <circle cx="200" cy="146" r="38" stroke="#D2AD68" strokeWidth="0.6" strokeDasharray="3 3" />
+      </>
+    )}
   </svg>
 );
 

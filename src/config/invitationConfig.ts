@@ -51,6 +51,8 @@ export const CONFIG = {
   images: {
     logo: '/assets/sumati-dham-logo.png',
     temple: '/assets/sumati-dham-temple.jpg',
+    hostsBoxScene: '/assets/royal-hosts-box.jpg',
+    hostsHandsOverlay: '/assets/royal-hosts-hands.png',
     acharyaMain: '/assets/acharya-shri-01.jpg',
     acharyaGallery: [
       {
@@ -303,4 +305,50 @@ export const CONFIG = {
     signOffPrefix: 'सादर',
     organizer: 'सुमतिधाम परिवार, इंदौर',
   },
+
+  registration: {
+    url: 'https://sumatidham.com/registration/',
+    ctaLabel: 'पंजीकरण करें',
+    modalTitle: 'महोत्सव ऑनलाइन पंजीकरण',
+    modalSubtitle: 'श्रमणोन्नायक महोत्सव · 15, 16 एवं 17 दिसंबर 2026',
+    modalDescription:
+      'आवास, भोजन एवं महोत्सव व्यवस्थाओं के सुगम संचालन हेतु कृपया सुमतिधाम के आधिकारिक पोर्टल पर अपना पंजीकरण सुनिश्चित करें।',
+    modalButtonText: 'आधिकारिक पंजीकरण खोलें',
+  },
+
+  socialMedia: [
+    {
+      id: 'instagram',
+      label: 'Instagram',
+      handle: '@sumatidham',
+      url: 'https://www.instagram.com/sumatidham/',
+    },
+    {
+      id: 'facebook',
+      label: 'Facebook',
+      handle: 'SumatiDham',
+      url: 'https://www.facebook.com/sumatidham',
+    },
+    {
+      id: 'youtube',
+      label: 'YouTube',
+      handle: '@SumatiDham',
+      url: 'https://youtube.com/@SumatiDham?si=Vr6FqMYtNxbErmIP',
+    },
+  ] as const,
+
+  contacts: [
+    {
+      display: '8719995010',
+      telHref: 'tel:+918719995010',
+      whatsappHref:
+        'https://wa.me/918719995010?text=%E0%A5%A5%20%E0%A4%9C%E0%A4%AF%20%E0%A4%9C%E0%A4%BF%E0%A4%A8%E0%A5%87%E0%A4%A8%E0%A5%8D%E0%A4%A6%E0%A5%8D%E0%A4%B0%20%E0%A5%A5%20%E0%A4%B6%E0%A5%8D%E0%A4%B0%E0%A4%AE%E0%A4%A3%E0%A5%8B%E0%A4%A8%E0%A5%8D%E0%A4%A8%E0%A4%BE%E0%A4%AF%E0%A4%95%20%E0%A4%AE%E0%A4%B9%E0%A5%8B%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%B5%202026%20%E0%A4%95%E0%A5%87%20%E0%A4%AC%E0%A4%BE%E0%A4%B0%E0%A5%87%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%9C%E0%A4%BE%E0%A4%A8%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%80%20%E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%BF%E0%A4%8F%E0%A5%A4',
+    },
+    {
+      display: '8719995011',
+      telHref: 'tel:+918719995011',
+      whatsappHref:
+        'https://wa.me/918719995011?text=%E0%A5%A5%20%E0%A4%9C%E0%A4%AF%20%E0%A4%9C%E0%A4%BF%E0%A4%A8%E0%A5%87%E0%A4%A8%E0%A5%8D%E0%A4%A6%E0%A5%8D%E0%A4%B0%20%E0%A5%A5%20%E0%A4%B6%E0%A5%8D%E0%A4%B0%E0%A4%AE%E0%A4%A3%E0%A5%8B%E0%A4%A8%E0%A5%8D%E0%A4%A8%E0%A4%BE%E0%A4%AF%E0%A4%95%20%E0%A4%AE%E0%A4%B9%E0%A5%8B%E0%A4%A4%E0%A5%8D%E0%A4%B8%E0%A4%B5%202026%20%E0%A4%95%E0%A5%87%20%E0%A4%AC%E0%A4%BE%E0%A4%B0%E0%A5%87%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%9C%E0%A4%BE%E0%A4%A8%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%80%20%E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%BF%E0%A4%8F%E0%A5%A4',
+    },
+  ] as const,
 } as const;

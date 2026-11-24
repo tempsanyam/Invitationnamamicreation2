@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  ArrowUp,
   ChevronLeft,
   ChevronRight,
   ExternalLink,
+  Phone,
   RotateCcw,
   Share2,
 } from 'lucide-react';
@@ -18,6 +18,11 @@ import {
   RoyalGoldenToran,
   RoyalJaliArchBackdrop,
 } from './RoyalOrnaments';
+import {
+  RoyalContactConnectCard,
+  RoyalRegistrationModal,
+  SocialPlatformIcon,
+} from './RoyalConnect';
 import { playRoyalSlide, playRoyalSuccess } from '../utils/royalSound';
 
 interface MainInvitationProps {
@@ -99,7 +104,6 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
     getISTCountdown(CONFIG.countdownTargetIsoIST)
   );
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [showBackToTop, setShowBackToTop] = useState(false);
 
   // Horizontal carousel indices & refs
   const [guruIndex, setGuruIndex] = useState(0);
@@ -111,8 +115,9 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
   const [highlightsIndex, setHighlightsIndex] = useState(0);
   const highlightsTrackRef = useRef<HTMLDivElement | null>(null);
 
-  // Interactive celebration states
+  // Interactive celebration & registration modal states
   const [shareNotice, setShareNotice] = useState<string | null>(null);
+  const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
   const programmaticCarouselUntilRef = useRef(0);
 
   const handleShareInvite = async () => {
@@ -148,7 +153,7 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
     return () => window.clearInterval(timer);
   }, []);
 
-  // Scroll progress bar & Back-to-top visibility
+  // Scroll progress bar
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -156,7 +161,6 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
         document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
       setScrollProgress(pct);
-      setShowBackToTop(scrollTop > 460);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
@@ -239,7 +243,7 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
               'radial-gradient(circle at 50% 18%, rgba(210, 173, 104, 0.1) 0%, rgba(11, 20, 40, 0.92) 55%, #080E1D 100%)',
           }}
         />
-        <RoyalJaliArchBackdrop className="opacity-[0.06]" />
+        <RoyalJaliArchBackdrop className="opacity-[0.06]" showCenterCircles={false} />
       </div>
 
       {/* Subtle Desktop Side Section Indicators */}
@@ -257,6 +261,7 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
           { id: 'highlights', label: 'प्रमुख आकर्षण' },
           { id: 'temple', label: 'पावन सुमतिधाम' },
           { id: 'location', label: 'स्थान एवं मानचित्र' },
+          { id: 'contact-connect', label: 'पंजीकरण एवं संपर्क' },
         ].map((item) => (
           <button
             key={item.id}
@@ -271,7 +276,7 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
       </nav>
 
       {/* Main Centered Mobile-First Royal Invitation Column (~430px) */}
-      <main className="relative z-10 mx-auto w-full max-w-[440px] px-4 py-8 sm:py-12 space-y-12 sm:space-y-14">
+      <main className="relative z-10 mx-auto w-full max-w-[440px] px-4 pt-8 sm:pt-12 pb-10 space-y-12 sm:space-y-14">
         {/* ============================================================
             TOP ROYAL HEADER BANNER
         ============================================================ */}
@@ -280,7 +285,39 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
           <p className="font-hindi-serif text-lg text-[#E9D5A7] font-semibold">
             {CONFIG.greeting}
           </p>
-          <LogoPresentation variant="medallion" size={88} />
+          <div className="relative w-[162px] h-[162px] flex items-center justify-center">
+            <svg
+              viewBox="0 0 180 180"
+              fill="none"
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 w-full h-full z-0"
+            >
+              <defs>
+                <radialGradient id="headerLogoGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#E9D5A7" stopOpacity="0.11" />
+                  <stop offset="58%" stopColor="#E9D5A7" stopOpacity="0.03" />
+                  <stop offset="100%" stopColor="#E9D5A7" stopOpacity="0" />
+                </radialGradient>
+              </defs>
+              {/* Subtle radial highlight behind logo */}
+              <circle cx="90" cy="90" r="84" fill="url(#headerLogoGlow)" />
+              {/* Ring 3 (Outer): subtle solid antique-gold hairline */}
+              <circle cx="90" cy="90" r="84" stroke="#E9D5A7" strokeWidth="0.9" strokeOpacity="0.18" />
+              {/* Ring 2 (Middle): symmetrical dashed gold ring */}
+              <circle
+                cx="90"
+                cy="90"
+                r="70"
+                stroke="#D2AD68"
+                strokeWidth="0.85"
+                strokeDasharray="3 3.5"
+                strokeOpacity="0.34"
+              />
+              {/* Ring 1 (Inner): crisp solid gold ring framing the medallion */}
+              <circle cx="90" cy="90" r="56" stroke="#E9D5A7" strokeWidth="0.95" strokeOpacity="0.28" />
+            </svg>
+            <LogoPresentation variant="medallion" size={88} className="relative z-10" />
+          </div>
           <div className="space-y-1 pt-1">
             <h1 className="font-hindi-serif royal-gold-title text-[34px] sm:text-[38px] font-bold leading-tight">
               {CONFIG.eventTitle}
@@ -1206,9 +1243,16 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
         </RevealSection>
 
         {/* ============================================================
+            SECTION 9B: REGISTRATION, CONTACT / WHATSAPP & SOCIAL MEDIA
+        ============================================================ */}
+        <RevealSection id="contact-connect">
+          <RoyalContactConnectCard onOpenRegistration={() => setIsRegistrationOpen(true)} />
+        </RevealSection>
+
+        {/* ============================================================
             SECTION 10: FINAL ROYAL INVITATION
         ============================================================ */}
-        <RevealSection id="final-invite" className="pb-10">
+        <RevealSection id="final-invite" className="pb-4">
           <div className="relative rounded-2xl border-2 border-[#B18A48] bg-[#0B1428] p-7 text-center overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.85)]">
             <GoldDustField />
             <div className="pointer-events-none absolute inset-2.5 rounded-xl border border-[#D2AD68]/55" />
@@ -1283,27 +1327,56 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
                   <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
                   <span>राजसी निमंत्रण पुनः देखें</span>
                 </button>
+
+                {/* Quiet Footer Social & Helpline Row */}
+                <div className="w-full pt-4 mt-1 border-t border-[#D2AD68]/25 flex flex-col items-center space-y-3">
+                  <div className="flex items-center justify-center gap-3">
+                    {CONFIG.socialMedia.map((social) => (
+                      <a
+                        key={social.id}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`सुमतिधाम ${social.label}`}
+                        className="w-10 h-10 rounded-full border border-[#D2AD68]/50 bg-[#12213B]/80 hover:bg-[#1D3455] hover:border-[#E9D5A7] text-[#E9D5A7] flex items-center justify-center transition-colors"
+                      >
+                        <SocialPlatformIcon platform={social.id} className="w-4 h-4" />
+                      </a>
+                    ))}
+                  </div>
+                  <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-[#D2AD68]/90 font-english-label tabular-nums">
+                    {CONFIG.contacts.map((contact) => (
+                      <a
+                        key={contact.display}
+                        href={contact.telHref}
+                        className="hover:text-[#F9F3E7] inline-flex items-center gap-1 py-1 transition-colors"
+                      >
+                        <Phone className="w-3 h-3" aria-hidden="true" />
+                        <span>{contact.display}</span>
+                      </a>
+                    ))}
+                    <a
+                      href={CONFIG.registration.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-hindi-body hover:text-[#F9F3E7] inline-flex items-center gap-1 py-1 transition-colors"
+                    >
+                      <span>ऑनलाइन पंजीकरण</span>
+                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </RevealSection>
       </main>
 
-      {/* Floating Back-to-Top Control */}
-      {showBackToTop && (
-        <button
-          type="button"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          aria-label="सबसे ऊपर जाएँ"
-          className="fixed z-40 w-11 h-11 rounded-full border border-[#D2AD68] bg-[#142440]/95 text-[#E9D5A7] hover:bg-[#1D3455] shadow-[0_8px_24px_rgba(0,0,0,0.65)] flex items-center justify-center transition-transform active:scale-95 focus-visible:outline-2 focus-visible:outline-[#F8F1E4]"
-          style={{
-            bottom: 'max(18px, env(safe-area-inset-bottom))',
-            right: 'max(18px, env(safe-area-inset-right))',
-          }}
-        >
-          <ArrowUp className="w-5 h-5" />
-        </button>
-      )}
+      {/* Royal Online Registration Popup Window */}
+      <RoyalRegistrationModal
+        isOpen={isRegistrationOpen}
+        onClose={() => setIsRegistrationOpen(false)}
+      />
     </div>
   );
 };
