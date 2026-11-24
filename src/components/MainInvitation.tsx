@@ -882,7 +882,7 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
               <p className="relative z-10 font-hindi-body text-xs text-[#D2AD68]">
                 {CONFIG.day2.droneShow.time}
               </p>
-              <h3 className="relative z-10 font-hindi-serif text-[25px] font-bold text-[#E9D5A7] mt-1">
+              <h3 className="relative z-10 font-hindi-serif text-[21px] sm:text-[23px] font-bold text-[#E9D5A7] mt-1 leading-snug">
                 {CONFIG.day2.droneShow.title}
               </h3>
             </div>
@@ -897,7 +897,7 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
               <p className="relative z-10 font-hindi-body text-xs text-[#E9D5A7]/90">
                 {CONFIG.day2.bhaktiNight.period}
               </p>
-              <h3 className="relative z-10 font-hindi-serif text-[25px] font-bold text-[#F8F1E4] mt-1">
+              <h3 className="relative z-10 font-hindi-serif text-[21px] sm:text-[23px] font-bold text-[#F8F1E4] mt-1 leading-snug">
                 {CONFIG.day2.bhaktiNight.title}
               </h3>
             </div>
@@ -1036,7 +1036,7 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
                       <p className="font-hindi-body text-xs text-[#E9D5A7]/90">
                         {item.dayLabel}
                       </p>
-                      <h3 className="font-hindi-serif text-[21px] sm:text-[23px] font-bold text-[#F8F1E4] leading-snug">
+                      <h3 className="font-hindi-serif text-[19px] sm:text-[21px] font-bold text-[#F8F1E4] leading-snug">
                         {item.title}
                       </h3>
                       <p className="font-hindi-body text-xs sm:text-sm text-[#D2AD68]">
