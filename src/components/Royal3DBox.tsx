@@ -256,30 +256,30 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
                 />
               )}
 
-              {/* Contained Vertical Red Satin Ribbon Track */}
+              {/* Contained Vertical Gold Satin Ribbon Track */}
               <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-7 z-10 overflow-hidden pointer-events-none">
                 <div
-                  className={`w-full h-full satin-red-ribbon-v transition-all duration-600 ease-out ${
+                  className={`w-full h-full satin-gold-ribbon-v transition-all duration-600 ease-out ${
                     unwrapStep >= 3 ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'
                   }`}
                 />
               </div>
 
-              {/* Contained Horizontal Red Satin Ribbon Track */}
+              {/* Contained Horizontal Gold Satin Ribbon Track */}
               <div className="absolute top-[34px] inset-x-0 h-6 z-10 flex overflow-hidden pointer-events-none">
                 <div
-                  className={`w-1/2 h-full satin-red-ribbon-h transition-all duration-600 ease-out ${
+                  className={`w-1/2 h-full satin-gold-ribbon-h transition-all duration-600 ease-out ${
                     unwrapStep >= 2 ? '-translate-x-full opacity-0' : 'translate-x-0 opacity-100'
                   }`}
                 />
                 <div
-                  className={`w-1/2 h-full satin-red-ribbon-h transition-all duration-600 ease-out ${
+                  className={`w-1/2 h-full satin-gold-ribbon-h transition-all duration-600 ease-out ${
                     unwrapStep >= 2 ? 'translate-x-full opacity-0' : 'translate-x-0 opacity-100'
                   }`}
                 />
               </div>
 
-              {/* Contained Sculpted Crimson-Red Satin Bow */}
+              {/* Contained Sculpted Gold Satin Bow */}
               <div
                 className={`absolute top-[10px] left-1/2 -translate-x-1/2 z-20 pointer-events-none transition-all duration-500 ease-out ${
                   unwrapStep === 1
@@ -292,9 +292,9 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
                 <svg width="112" height="52" viewBox="0 0 136 62" fill="none">
                   <defs>
                     <linearGradient id="bowLoopGradHosts" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stopColor="#F46B7E" />
-                      <stop offset="45%" stopColor="#C81E3D" />
-                      <stop offset="100%" stopColor="#730B1F" />
+                      <stop offset="0%" stopColor="#F5E7C4" />
+                      <stop offset="45%" stopColor="#D2AD68" />
+                      <stop offset="100%" stopColor="#9C7331" />
                     </linearGradient>
                   </defs>
                   <path
@@ -314,13 +314,13 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
                   <path
                     d="M64 29 C46 8, 12 10, 14 29 C16 46, 48 44, 64 31 Z"
                     fill="url(#bowLoopGradHosts)"
-                    stroke="#F7A1AE"
+                    stroke="#E9D5A7"
                     strokeWidth="1"
                   />
                   <path
                     d="M72 29 C90 8, 124 10, 122 29 C120 46, 88 44, 72 31 Z"
                     fill="url(#bowLoopGradHosts)"
-                    stroke="#F7A1AE"
+                    stroke="#E9D5A7"
                     strokeWidth="1"
                   />
                   <rect
@@ -329,8 +329,8 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
                     width="20"
                     height="20"
                     rx="6"
-                    fill="#D92647"
-                    stroke="#F9B4BF"
+                    fill="#E9D5A7"
+                    stroke="#8E6728"
                     strokeWidth="1.2"
                   />
                 </svg>
@@ -546,9 +546,9 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
                       >
                         <defs>
                           <linearGradient id="boxCenterRopeGrad" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stopColor="#F87171" />
-                            <stop offset="48%" stopColor="#DC2626" />
-                            <stop offset="100%" stopColor="#88132B" />
+                            <stop offset="0%" stopColor="#FFF5D8" />
+                            <stop offset="50%" stopColor="#D2AD68" />
+                            <stop offset="100%" stopColor="#946B25" />
                           </linearGradient>
                         </defs>
                         <rect
@@ -558,12 +558,12 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
                           height="92"
                           rx="5"
                           fill="url(#boxCenterRopeGrad)"
-                          stroke="#FCA5A5"
-                          strokeWidth="1.3"
+                          stroke="#5A0B1C"
+                          strokeWidth="1.5"
                         />
                         <path
                           d="M21 12 L37 22 M21 26 L37 36 M21 40 L37 50 M21 54 L37 64 M21 68 L37 78"
-                          stroke="#7F1D1D"
+                          stroke="#721226"
                           strokeWidth="2.2"
                           strokeLinecap="round"
                         />
@@ -571,15 +571,15 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
                           cx="29"
                           cy="46"
                           r="7"
-                          fill="#DC2626"
-                          stroke="#FECACA"
-                          strokeWidth="1.8"
+                          fill="#8B152F"
+                          stroke="#FFF0C4"
+                          strokeWidth="2"
                         />
                       </svg>
                     </div>
                   </div>
 
-                  {/* Pull-Through Interactive Red Rope & Pull-Ring (Strictly Inside Box Bounds) */}
+                  {/* Pull-Through Interactive Gold-Crimson Braided Rope & Pull-Ring (Strictly Inside Box Bounds) */}
                   <div
                     onPointerDown={handleRopePointerDown}
                     onPointerMove={handleRopePointerMove}
@@ -598,20 +598,20 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
                     className="relative z-30 flex flex-col items-center cursor-grab active:cursor-grabbing -mt-0.5 pt-0.5 pb-1 px-8 focus-visible:outline-2 focus-visible:outline-[#E9D5A7]"
                     style={{ touchAction: 'none' }}
                   >
-                    {/* Stretching Braided Red Rope Strand */}
+                    {/* Stretching Braided Rope Strand */}
                     <div
-                      className="w-1.5 rounded-full border border-[#FCA5A5]/45 shadow"
+                      className="w-1.5 rounded-full border border-[#6E1224]/60 shadow"
                       style={{
                         height: `${24 + ropePullY * 0.55}px`,
                         background:
-                          'repeating-linear-gradient(135deg, #F87171 0px, #DC2626 5px, #7F1D1D 5px, #7F1D1D 9px)',
+                          'repeating-linear-gradient(135deg, #FFF0C4 0px, #D2AD68 5px, #8F1831 5px, #8F1831 9px)',
                         transition: isPullingRope ? 'none' : 'height 0.3s ease',
                       }}
                     />
 
-                    {/* Red Pull Ring + Downward Arrow */}
+                    {/* Gold-Trimmed Pull Ring + Downward Arrow */}
                     <div className="relative -mt-0.5 flex flex-col items-center">
-                      <div className="w-11 h-11 rounded-full border-2 border-[#FECACA] bg-gradient-to-b from-[#DC2626] to-[#7F1D1D] shadow-[0_8px_20px_rgba(220,38,38,0.4)] flex items-center justify-center text-[#FFF5F5] hover:brightness-110 active:scale-95 transition-all">
+                      <div className="w-11 h-11 rounded-full border-2 border-[#FFF0C4] bg-gradient-to-b from-[#9B1C34] to-[#5E0C1D] shadow-[0_8px_20px_rgba(233,213,167,0.35)] flex items-center justify-center text-[#FFF3D6] hover:brightness-110 active:scale-95 transition-all">
                         <ArrowDown className="w-5 h-5 animate-pull-cue" aria-hidden="true" />
                       </div>
                     </div>

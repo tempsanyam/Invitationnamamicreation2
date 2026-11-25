@@ -130,35 +130,6 @@
     inset 1px 0 1px rgba(255, 250, 232, 0.6);
 }
 
-/* Red satin ribbon texture for Mangal Box */
-.satin-red-ribbon-h {
-  background: linear-gradient(
-    180deg,
-    #7f1126 0%,
-    #e23d56 24%,
-    #b91c38 50%,
-    #ee5d74 74%,
-    #6b0c1e 100%
-  );
-  box-shadow:
-    0 4px 12px rgba(11, 20, 40, 0.55),
-    inset 0 1px 1px rgba(255, 205, 214, 0.55);
-}
-
-.satin-red-ribbon-v {
-  background: linear-gradient(
-    90deg,
-    #6b0c1e 0%,
-    #e23d56 26%,
-    #b91c38 52%,
-    #ee5d74 76%,
-    #6b0c1e 100%
-  );
-  box-shadow:
-    4px 0 12px rgba(11, 20, 40, 0.5),
-    inset 1px 0 1px rgba(255, 205, 214, 0.52);
-}
-
 /* Hide scrollbars cleanly for swipe carousels */
 .no-scrollbar {
   -ms-overflow-style: none;
