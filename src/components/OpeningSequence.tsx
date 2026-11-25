@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
 import { CONFIG } from '../config/invitationConfig';
 import {
   CornerFiligree,
@@ -23,6 +24,7 @@ export const OpeningSequence: React.FC<OpeningSequenceProps> = ({ onComplete }) 
   const [stage, setStage] = useState<OpeningStage>('box');
   const [unwrapStep, setUnwrapStep] = useState<0 | 1 | 2 | 3>(0);
   const [petalKey, setPetalKey] = useState(0);
+  const [showBgImage, setShowBgImage] = useState(true);
   const timersRef = useRef<number[]>([]);
 
   const clearTimers = () => {
@@ -97,6 +99,32 @@ export const OpeningSequence: React.FC<OpeningSequenceProps> = ({ onComplete }) 
         <CornerFiligree position="br" className="absolute bottom-0 right-0" />
       </div>
 
+      {/* Subtle Front-Page Background Visibility Eye Toggle (Scene 1 only) */}
+      {stage !== 'open' && (
+        <button
+          type="button"
+          onClick={() => setShowBgImage((prev) => !prev)}
+          aria-label={showBgImage ? 'बैकग्राउंड इमेज छिपाएँ' : 'बैकग्राउंड इमेज दिखाएँ'}
+          aria-pressed={showBgImage}
+          title={showBgImage ? 'बैकग्राउंड इमेज छिपाएँ' : 'बैकग्राउंड इमेज दिखाएँ'}
+          className={`fixed z-50 w-10 h-10 rounded-full border bg-[#070D1C]/85 backdrop-blur-sm hover:text-[#F9F3E7] hover:border-[#D2AD68] transition-all flex items-center justify-center shadow-[0_6px_18px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-[#E9D5A7] active:scale-95 ${
+            showBgImage
+              ? 'border-[#B18A48]/55 text-[#E9D5A7]'
+              : 'border-[#B18A48]/40 text-[#E9D5A7]/75'
+          } ${stage === 'zooming' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+          style={{
+            top: 'max(14px, env(safe-area-inset-top))',
+            right: 'max(16px, env(safe-area-inset-right))',
+          }}
+        >
+          {showBgImage ? (
+            <Eye className="w-4 h-4" aria-hidden="true" />
+          ) : (
+            <EyeOff className="w-4 h-4 opacity-80" aria-hidden="true" />
+          )}
+        </button>
+      )}
+
       {/* Main Centered Royal Mangal Box Stage */}
       <div
         className={`relative z-20 w-full flex flex-col items-center text-center ${
@@ -106,6 +134,7 @@ export const OpeningSequence: React.FC<OpeningSequenceProps> = ({ onComplete }) 
         <Royal3DBox
           stage={stage}
           unwrapStep={unwrapStep}
+          showBgImage={showBgImage}
           onStartOpen={handleBoxOpen}
           onTriggerPetals={() => setPetalKey((k) => k + 1)}
           onEnterInvitation={() => {

@@ -11,6 +11,7 @@ import {
 interface Royal3DBoxProps {
   stage: 'box' | 'unwrapping' | 'zooming' | 'open';
   unwrapStep: 0 | 1 | 2 | 3;
+  showBgImage?: boolean;
   onStartOpen: () => void;
   onTriggerPetals: () => void;
   onEnterInvitation: () => void;
@@ -31,6 +32,7 @@ interface Royal3DBoxProps {
 export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
   stage,
   unwrapStep,
+  showBgImage = true,
   onStartOpen,
   onTriggerPetals,
   onEnterInvitation,
@@ -152,9 +154,11 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
         {/* 1136:923 Royal Palace Hosts Portrait Frame with Box-Centered Zoom */}
         <div
           ref={hostsStageRef}
-          className={`relative aspect-[1136/923] w-full max-w-[360px] sm:max-w-[448px] mx-auto rounded-2xl transition-all duration-[950ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            isZooming
-              ? 'border-2 border-transparent shadow-none overflow-visible'
+          className={`relative aspect-[1136/923] w-full max-w-[360px] sm:max-w-[448px] mx-auto rounded-2xl transition-all ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            isZooming ? 'duration-[950ms]' : 'duration-300'
+          } ${
+            isZooming || !showBgImage
+              ? 'border-2 border-transparent shadow-none bg-transparent overflow-visible'
               : 'border-2 border-[#D2AD68]/80 shadow-[0_24px_60px_rgba(0,0,0,0.85)] bg-[#0B1222] overflow-hidden'
           }`}
           style={{
@@ -162,10 +166,15 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
             transform: isZooming ? 'scale(3.4)' : 'scale(1)',
           }}
         >
-          {/* Clipped Hosts Photo Backdrop (dissolves gently during zoom into midnight backdrop) */}
+          {/* Clipped Hosts Photo Backdrop (toggled cleanly by Eye control or dissolves during zoom) */}
           <div
-            className={`absolute inset-0 rounded-2xl overflow-hidden transition-opacity duration-[780ms] ease-out ${
-              isZooming ? 'opacity-0' : 'opacity-100'
+            aria-hidden={!showBgImage}
+            className={`absolute inset-0 rounded-2xl overflow-hidden transition-all ease-out pointer-events-none ${
+              isZooming
+                ? 'duration-[780ms] opacity-0'
+                : showBgImage
+                  ? 'duration-300 opacity-100 visible'
+                  : 'duration-300 opacity-0 invisible'
             }`}
           >
             {/* Subtle Inner Gold Trim */}
