@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Eye, EyeOff } from 'lucide-react';
 import { CONFIG } from '../config/invitationConfig';
 import {
   CornerFiligree,
@@ -24,7 +23,6 @@ export const OpeningSequence: React.FC<OpeningSequenceProps> = ({ onComplete }) 
   const [stage, setStage] = useState<OpeningStage>('box');
   const [unwrapStep, setUnwrapStep] = useState<0 | 1 | 2 | 3>(0);
   const [petalKey, setPetalKey] = useState(0);
-  const [showBgImage, setShowBgImage] = useState(true);
   const timersRef = useRef<number[]>([]);
 
   const clearTimers = () => {
@@ -36,7 +34,7 @@ export const OpeningSequence: React.FC<OpeningSequenceProps> = ({ onComplete }) 
     return () => clearTimers();
   }, []);
 
-  // Trigger contained ribbon unwrap -> smooth controlled zoom into box -> Front-View Open Box
+  // Trigger snappy ribbon unwrap -> immediate smooth zoom into box -> Front-View Open Box
   const handleBoxOpen = () => {
     if (stage !== 'box') return;
     clearTimers();
@@ -47,22 +45,22 @@ export const OpeningSequence: React.FC<OpeningSequenceProps> = ({ onComplete }) 
     const t1 = window.setTimeout(() => {
       setUnwrapStep(2);
       playRibbonStep(2);
-    }, 460);
+    }, 280);
 
     const t2 = window.setTimeout(() => {
       setUnwrapStep(3);
       playRibbonStep(3);
-    }, 920);
+    }, 560);
 
     const t3 = window.setTimeout(() => {
       setStage('zooming');
       playRoyalSlide();
-    }, 1480);
+    }, 840);
 
     const t4 = window.setTimeout(() => {
       setStage('open');
       playBoxOpen();
-    }, 2480);
+    }, 1380);
 
     timersRef.current.push(t1, t2, t3, t4);
   };
@@ -84,11 +82,11 @@ export const OpeningSequence: React.FC<OpeningSequenceProps> = ({ onComplete }) 
           background:
             stage === 'open'
               ? 'radial-gradient(circle at 50% 42%, rgba(92, 24, 48, 0.24) 0%, rgba(18, 33, 59, 0.68) 46%, #070D1C 88%)'
-              : 'radial-gradient(circle at 50% 38%, rgba(210, 173, 104, 0.16) 0%, rgba(18, 33, 59, 0.62) 48%, #070D1C 88%)',
+              : 'radial-gradient(circle at 50% 40%, rgba(210, 173, 104, 0.2) 0%, rgba(77, 23, 47, 0.22) 34%, rgba(18, 33, 59, 0.72) 56%, #070D1C 90%)',
         }}
         aria-hidden="true"
       />
-      <RoyalJaliArchBackdrop />
+      <RoyalJaliArchBackdrop showCenterCircles={stage === 'open'} />
       <GoldDustField />
 
       {/* Corner Filigree Frames */}
@@ -99,42 +97,15 @@ export const OpeningSequence: React.FC<OpeningSequenceProps> = ({ onComplete }) 
         <CornerFiligree position="br" className="absolute bottom-0 right-0" />
       </div>
 
-      {/* Subtle Front-Page Background Visibility Eye Toggle (Scene 1 only) */}
-      {stage !== 'open' && (
-        <button
-          type="button"
-          onClick={() => setShowBgImage((prev) => !prev)}
-          aria-label={showBgImage ? 'बैकग्राउंड इमेज छिपाएँ' : 'बैकग्राउंड इमेज दिखाएँ'}
-          aria-pressed={showBgImage}
-          title={showBgImage ? 'बैकग्राउंड इमेज छिपाएँ' : 'बैकग्राउंड इमेज दिखाएँ'}
-          className={`fixed z-50 w-10 h-10 rounded-full border bg-[#070D1C]/85 backdrop-blur-sm hover:text-[#F9F3E7] hover:border-[#D2AD68] transition-all flex items-center justify-center shadow-[0_6px_18px_rgba(0,0,0,0.45)] focus-visible:outline-2 focus-visible:outline-[#E9D5A7] active:scale-95 ${
-            showBgImage
-              ? 'border-[#B18A48]/55 text-[#E9D5A7]'
-              : 'border-[#B18A48]/40 text-[#E9D5A7]/75'
-          } ${stage === 'zooming' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-          style={{
-            top: 'max(14px, env(safe-area-inset-top))',
-            right: 'max(16px, env(safe-area-inset-right))',
-          }}
-        >
-          {showBgImage ? (
-            <Eye className="w-4 h-4" aria-hidden="true" />
-          ) : (
-            <EyeOff className="w-4 h-4 opacity-80" aria-hidden="true" />
-          )}
-        </button>
-      )}
-
       {/* Main Centered Royal Mangal Box Stage */}
       <div
         className={`relative z-20 w-full flex flex-col items-center text-center ${
-          stage === 'open' ? 'max-w-[440px] pt-10 sm:pt-6' : 'max-w-[468px] pt-8 sm:pt-6'
+          stage === 'open' ? 'max-w-[440px] pt-6 sm:pt-4' : 'max-w-[480px] pt-2'
         }`}
       >
         <Royal3DBox
           stage={stage}
           unwrapStep={unwrapStep}
-          showBgImage={showBgImage}
           onStartOpen={handleBoxOpen}
           onTriggerPetals={() => setPetalKey((k) => k + 1)}
           onEnterInvitation={() => {

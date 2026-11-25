@@ -397,6 +397,42 @@
   }
 }
 
+/* Scene 1 standalone 3D Mangal Box showcase aura & light sweep */
+@keyframes boxShadowBreathe {
+  0%, 100% {
+    transform: scale(0.94);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 0.85;
+  }
+}
+
+.animate-box-shadow-breathe {
+  animation: boxShadowBreathe 3.8s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes sealUnlockPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.16);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+.animate-seal-pulse {
+  animation: sealUnlockPulse 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 /* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -412,6 +448,8 @@
   .animate-toran-sway,
   .animate-halo-breathe,
   .animate-box-levitate,
+  .animate-box-shadow-breathe,
+  .animate-seal-pulse,
   .animate-tassel-sway,
   .animate-farman-unfurl,
   .animate-filigree-gleam,
