@@ -140,29 +140,29 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
   // ============================================================================
   if (stage === 'box' || stage === 'unwrapping' || stage === 'zooming') {
     const STAGE1_LID_W = 234;
-    // Measured exact box bounds inside re-cropped 880x1100 image:
-    // left: 31.48%, top: 37.36%, width: 35.45%, height: 28.36%
-    // Box center: (49.205%, 51.54%)
-    const baseBoxPx = hostsStageWidth * 0.3545;
+    // Measured exact box bounds inside 1136x923 hosts portrait:
+    // left: 38.64% (439px), top: 41.06% (379px), width: 22.45% (255px), height: 28.17% (260px)
+    // Box center: (49.87%, 55.15%)
+    const baseBoxPx = hostsStageWidth * 0.2245;
     const restScale = baseBoxPx / STAGE1_LID_W;
     const isZooming = stage === 'zooming';
 
     return (
       <div className="flex flex-col items-center w-full animate-[fadeIn_0.45s_ease-out]">
-        {/* Re-cropped 4:5 Head-to-Knees Hosts Portrait Frame with Box-Centered Zoom */}
+        {/* 1136:923 Royal Palace Hosts Portrait Frame with Box-Centered Zoom */}
         <div
           ref={hostsStageRef}
-          className={`relative aspect-[4/5] w-full max-w-[342px] sm:max-w-[386px] mx-auto rounded-2xl transition-all duration-[950ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`relative aspect-[1136/923] w-full max-w-[360px] sm:max-w-[448px] mx-auto rounded-2xl transition-all duration-[950ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
             isZooming
               ? 'border-2 border-transparent shadow-none overflow-visible'
-              : 'border-2 border-[#D2AD68]/80 shadow-[0_24px_60px_rgba(0,0,0,0.85)] bg-[#140E12] overflow-hidden'
+              : 'border-2 border-[#D2AD68]/80 shadow-[0_24px_60px_rgba(0,0,0,0.85)] bg-[#0B1222] overflow-hidden'
           }`}
           style={{
-            transformOrigin: '49.2% 51.5%',
-            transform: isZooming ? 'scale(2.55)' : 'scale(1)',
+            transformOrigin: '49.87% 55.15%',
+            transform: isZooming ? 'scale(3.4)' : 'scale(1)',
           }}
         >
-          {/* Clipped Hosts Photo + Hands Backdrop (dissolves gently during zoom into midnight backdrop) */}
+          {/* Clipped Hosts Photo Backdrop (dissolves gently during zoom into midnight backdrop) */}
           <div
             className={`absolute inset-0 rounded-2xl overflow-hidden transition-opacity duration-[780ms] ease-out ${
               isZooming ? 'opacity-0' : 'opacity-100'
@@ -174,7 +174,7 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
               aria-hidden="true"
             />
 
-            {/* Re-cropped Head-to-Knees Hosts Backdrop */}
+            {/* Hosts Backdrop */}
             <img
               src={CONFIG.images.hostsBoxScene}
               alt="सुमतिधाम गोधा एस्टेट परिवार — हाथों में मंगल बॉक्स लिए आत्मीय स्वागत"
@@ -184,18 +184,18 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
 
             {/* Soft Bottom Gradient Vignette */}
             <div
-              className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#070D1C]/50 to-transparent z-10"
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-gradient-to-t from-[#070D1C]/55 to-transparent z-10"
               aria-hidden="true"
             />
 
             {/* Natural Underside Contact Shadow onto Palms & Attire */}
             <div
-              className="pointer-events-none absolute z-10 rounded-xl bg-black/60 blur-md"
+              className="pointer-events-none absolute z-10 rounded-xl bg-black/55 blur-md"
               style={{
-                left: '32.0%',
-                top: '64.6%',
-                width: '34.4%',
-                height: '3.6%',
+                left: '39.2%',
+                top: '68.4%',
+                width: '21.4%',
+                height: '3.0%',
               }}
               aria-hidden="true"
             />
@@ -222,10 +222,10 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
                 : 'opacity-100 duration-300'
             }`}
             style={{
-              left: '31.48%',
-              top: '37.36%',
-              width: '35.45%',
-              height: '28.36%',
+              left: '38.64%',
+              top: '41.06%',
+              width: '22.45%',
+              height: '28.17%',
               boxShadow: isZooming
                 ? '0 22px 48px rgba(0, 0, 0, 0.72)'
                 : '0 8px 18px rgba(10, 6, 12, 0.45)',
@@ -344,17 +344,6 @@ export const Royal3DBox: React.FC<Royal3DBoxProps> = ({
               </div>
             </div>
           </button>
-
-          {/* Foreground Hosts' Thumbs & Fingers Wrapping Naturally Over Bottom Corners */}
-          <img
-            src={CONFIG.images.hostsHandsOverlay}
-            alt=""
-            aria-hidden="true"
-            draggable={false}
-            className={`pointer-events-none absolute inset-0 w-full h-full object-cover object-center z-30 select-none transition-opacity duration-[700ms] ease-out ${
-              isZooming ? 'opacity-0' : 'opacity-100'
-            }`}
-          />
         </div>
 
         {/* Preserved Greeting & Open Action (fades out gently during zoom) */}

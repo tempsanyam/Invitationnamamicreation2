@@ -100,7 +100,7 @@ export const OpeningSequence: React.FC<OpeningSequenceProps> = ({ onComplete }) 
       {/* Main Centered Royal Mangal Box Stage */}
       <div
         className={`relative z-20 w-full flex flex-col items-center text-center ${
-          stage === 'open' ? 'max-w-[440px] pt-10 sm:pt-6' : 'max-w-[420px] pt-12 sm:pt-8'
+          stage === 'open' ? 'max-w-[440px] pt-10 sm:pt-6' : 'max-w-[468px] pt-8 sm:pt-6'
         }`}
       >
         <Royal3DBox

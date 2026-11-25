@@ -427,7 +427,9 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
                         <img
                           src={photo.src}
                           alt={photo.alt}
-                          className="w-full h-full object-cover object-top animate-gentle-zoom"
+                          className={`w-full h-full object-cover animate-gentle-zoom ${
+                            photo.focus === 'center' ? 'object-center' : 'object-top'
+                          }`}
                           referrerPolicy="no-referrer"
                         />
                         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0B1428]/50 via-transparent to-transparent" />
@@ -1010,7 +1012,7 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
 
                     <div className="relative z-10 w-full">
                       {item.image ? (
-                        <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-[#E9D5A7]/65 bg-[#081022] shadow-md">
+                        <div className="relative w-full aspect-[16/9] rounded-xl overflow-hidden border border-[#E9D5A7]/65 bg-[#081022] shadow-md">
                           <img
                             src={item.image}
                             alt={item.title}
@@ -1156,21 +1158,23 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
           </div>
 
           <div className="relative rounded-2xl border-2 border-[#D2AD68] p-2 bg-[#13223D] shadow-[0_22px_50px_rgba(0,0,0,0.75)]">
-            <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-[#081022]">
-              <img
-                src={CONFIG.images.temple}
-                alt="सुमतिधाम मंदिर, इंदौर"
-                className="w-full h-full object-cover object-center animate-gentle-zoom"
-                referrerPolicy="no-referrer"
-              />
-              <div
-                className="pointer-events-none absolute inset-0"
-                style={{
-                  background:
-                    'linear-gradient(180deg, rgba(210,173,104,0.12) 0%, transparent 35%, rgba(8,16,34,0.92) 100%)',
-                }}
-              />
-              <div className="absolute bottom-0 inset-x-0 p-5 text-center space-y-1">
+            <div className="overflow-hidden rounded-xl bg-[#081022]">
+              <div className="relative overflow-hidden aspect-[16/9] bg-[#081022]">
+                <img
+                  src={CONFIG.images.temple}
+                  alt="सुमतिधाम मंदिर, इंदौर"
+                  className="w-full h-full object-cover object-center animate-gentle-zoom"
+                  referrerPolicy="no-referrer"
+                />
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      'linear-gradient(180deg, rgba(210,173,104,0.08) 0%, transparent 32%, rgba(8,16,34,0.45) 100%)',
+                  }}
+                />
+              </div>
+              <div className="px-4 py-4 text-center space-y-1 bg-gradient-to-b from-[#0E1A32] to-[#081022] border-t border-[#D2AD68]/40">
                 <h3 className="font-hindi-serif text-2xl font-bold text-[#E9D5A7]">
                   {CONFIG.temple.title}
                 </h3>
@@ -1364,6 +1368,21 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
                       <span>ऑनलाइन पंजीकरण</span>
                       <ExternalLink className="w-3 h-3" aria-hidden="true" />
                     </a>
+                  </div>
+                  {/* Subtle Craft & Production Credits */}
+                  <div className="w-full pt-3 mt-1 px-2 border-t border-[#D2AD68]/15 flex flex-col items-center space-y-1 text-center font-english-label text-[10px] sm:text-xs leading-relaxed tracking-normal sm:tracking-wide text-[#B18A48]/85">
+                    <p>
+                      Designed &amp; Developed by{' '}
+                      <span className="font-medium text-[#E9D5A7] whitespace-nowrap">
+                        NAMAMI CREATION
+                      </span>
+                    </p>
+                    <p>
+                      Video Production &amp; Editing by{' '}
+                      <span className="font-medium text-[#E9D5A7] whitespace-nowrap">
+                        Namo Production
+                      </span>
+                    </p>
                   </div>
                 </div>
               </div>
