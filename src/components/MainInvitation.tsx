@@ -1373,9 +1373,14 @@ export const MainInvitation: React.FC<MainInvitationProps> = ({ onReplayOpening 
                   <div className="w-full pt-3 mt-1 px-2 border-t border-[#D2AD68]/15 flex flex-col items-center space-y-1 text-center font-english-label text-[10px] sm:text-xs leading-relaxed tracking-normal sm:tracking-wide text-[#B18A48]/85">
                     <p>
                       Designed &amp; Developed by{' '}
-                      <span className="font-medium text-[#E9D5A7] whitespace-nowrap">
+                      <a
+                        href="https://wa.aisensy.com/aabvom"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-[#E9D5A7] whitespace-nowrap hover:opacity-90 focus-visible:outline-2 focus-visible:outline-[#E9D5A7] transition-opacity"
+                      >
                         NAMAMI CREATION
-                      </span>
+                      </a>
                     </p>
                     <p>
                       Video Production &amp; Editing by{' '}
